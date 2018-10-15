@@ -1,28 +1,126 @@
-<!DOCTYPE html>
 <html>
 <head>
 <title>Page Title</title>
 <style>
-		body {
-			padding: 0;
-			margin; 0;
-			overflow:hidden;
-		}
+	body {
+		padding: 0;
+		margin; 0;
+		overflow:hidden;
+	}
 </style>
+
+</head>
+<body>
+<canvas id="canvas">
+
 <script>
 window.onload = function() {
+
 	var canvas = document.getElementById("canvas"),
 		ctx = canvas.getContext("2d"),
 		W = window.innerWidtH,
 		H = window.innerHeight;
-		canvas.width = W;
-		canvas.height = H;
-		console.log('hello');
+		canvas.width = W/2;
+		canvas.height = H/2;
+
+	// var player = [ new Player(87,83,"left"), new Player(38,40,"right")];
+
+	var ball = new Ball();
+
 		setInterval(draw,33);
-		function draw(){
+
+		function Ball() {
+
+			this.x = W / 2;
+			this.y = H / 2;
+			this.style = "white";
+			this.size = 25;
+
+			this.draw = function() {
+				ctx.beginPath();
+				ctx.fillStyle = this.style;
+				ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+				ctx.fill();
+			}
+			this.update = function() {
+				
+			}
+		}
+
+		function Player(color) { // key_up, key_down,
+			
+			// this.up=key_up;
+			// this.down=key_down;
+
+			this.color = color == "left" ? "red" : "blue";
+			this.sizeWidth = 25;
+			this.sizeLenght = 100;
+
+			this.x = 100;
+			this.y = (H/2)-(this.sizeLength/2);
+
+			this.draw = function() {
+				ctx.beginPath();
+				ctx.fillStyle = this.color;
+				ctx.fillRect(this.x,this.y,this.sizeWidth,this.sizeLength);
+			}
+
+			this.update = function() {
+
+			}
+		}
+
+		function Ball(x, y, velX, velY, color, size) {
+		  
+		  this.x = x;
+		  this.y = y;
+		  this.velX = velX;
+		  this.velY = velY;
+		  this.color = color;
+		  this.size = size;
+
+		  Ball.prototype.draw = function() {
+			  ctx.beginPath();
+			  ctx.fillStyle = this.color;
+			  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+			  ctx.fill();
+			}
+		}
+
+		function draw(){ 
 			ctx.globalCompositeOperation = "source-over";
-			ctx.fillStyle = "balck";
-			ctx.fillRect(0,0,W,H);	
+			ctx.fillStyle = "lightgreen";
+			ctx.fillRect(0,0,W,H);
+
+			// TRY CON LAS PELOTITAS
+/*
+			var testBall = new Ball(50, 100, 4, 4, 'blue', 10);
+			testBall.x;
+			testBall.size;
+			testBall.color;
+			testBall.draw();*/
+
+/*			for (var i = 0; i = player.length; i++) {
+				player[i].x;
+				player[i].y;
+				player[i].color;
+				player[i].sizeWidth;
+				player[i].sizeLength;
+				player[i].draw();
+				player[i].update();
+			}*/
+
+				var player = new Player("left");
+				player.x;
+				player.y;
+				player.color;
+				player.sizeWidth;
+				player.sizeLength;
+				player.draw();
+				player.update();
+
+/*			ball.draw();
+			ball.update();	*/
 		}
 		function resizeCanvas() {
 			W = window.innerWidth; 
@@ -30,12 +128,18 @@ window.onload = function() {
 			canvas.width = W;
 			canvas.height = H;
 		}
+		function keyDown(event) {
+			console.log("DOWN??", event.which);
+		}
 		window.onresize = resizeCanvas;
+
+		function logs() {
+			console.log("HELLO", players);
+		}
 }	
 	
 </script>
-</head>
-<body>
-<canvas id="canvas"></canvas>
+
+</canvas>
 </body>
 </html> 
