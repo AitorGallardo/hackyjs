@@ -1,22 +1,39 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Page Title</title>
-
+<style>
+		body {
+			padding: 0;
+			margin; 0;
+			overflow:hidden;
+		}
+</style>
 <script>
-
 window.onload = function() {
 	var canvas = document.getElementById("canvas"),
 		ctx = canvas.getContext("2d"),
 		W = window.innerWidtH,
 		H = window.innerHeight;
-
 		canvas.width = W;
 		canvas.height = H;
+		console.log('hello');
+		setInterval(draw,33);
+		function draw(){
+			ctx.globalCompositeOperation = "source-over";
+			ctx.fillStyle = "balck";
+			ctx.fillRect(0,0,W,H);	
+		}
+		function resizeCanvas() {
+			W = window.innerWidth; 
+			H = window.innerHeight;
+			canvas.width = W;
+			canvas.height = H;
+		}
+		window.onresize = resizeCanvas;
 }	
 	
 </script>
-
 </head>
 <body>
 <canvas id="canvas"></canvas>
