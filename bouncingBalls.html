@@ -7,11 +7,17 @@
 		margin; 0;
 		overflow:hidden;
 	}
+	canvas {
+		height: 500px;
+		width: 480px;
+	}
 </style>
 
 </head>
 <body>
+<button id="hola">+</button>
 <canvas id="canvas">
+
 
 <script>
 
@@ -19,6 +25,8 @@
 	var ctx = canvas.getContext('2d');
 	var width = canvas.width = window.innerWidth;
 	var height = canvas.height = window.innerHeight;
+
+
 
 	function random(min, max) {
 	  	var num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -76,15 +84,15 @@
 	  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
 	  ctx.fillRect(0, 0, width, height);
 
-	  while (balls.length < 300) {
+	  while (balls.length < 1) {
 	    var size = random(10,20);
 	    var ball = new Ball(
 	      // ball position always drawn at least one ball width
 	      // away from the edge of the canvas, to avoid drawing errors
 	      random(0 + size,width - size),
 	      random(0 + size,height - size),
-	      random(-7,7),
-	      random(-7,7),
+	      2, //random(-7,7)
+	      2, //random(-7,7)
 	      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
 	      size
 	    );
@@ -92,12 +100,35 @@
 	  }
 
 	  for (var i = 0; i < balls.length; i++) {
-	    balls[i].draw();
-	    balls[i].update();
+		balls[i].draw();
+		balls[i].update();
+/*	    document.getElementById("canvas").addEventListener("mouseover", function(event){
+			balls[i].color = 'red';
+			balls[i].draw();
+			balls[i].update();
+	    });*/
 	  }
 
 	  requestAnimationFrame(loop);
 	}
+
+		document.getElementById("hola").addEventListener("click", function(){
+		console.log("holahola");
+		var size = random(10,20);
+	    var ball = new Ball(
+	      // ball position always drawn at least one ball width
+	      // away from the edge of the canvas, to avoid drawing errors
+	      random(0 + size,width - size),
+	      random(0 + size,height - size),
+	      random(2,9), //random(-7,7)
+	      random(2,9), //random(-7,7)
+	      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+	      size
+	    );
+	    balls.push(ball);
+	}); 
+
+
 
 	loop();
 
@@ -105,6 +136,6 @@
 
 </script>
 
-</canvas>
+</canvas>	
 </body>
 </html> 
