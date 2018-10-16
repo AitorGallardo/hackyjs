@@ -11,6 +11,11 @@
 		height: 500px;
 		width: 480px;
 	}
+	button {
+		height: 80px;
+		width: 80px;
+		background-color: dodgerblue;
+	}
 </style>
 
 </head>
@@ -100,6 +105,7 @@
 	  }
 
 	  for (var i = 0; i < balls.length; i++) {
+	  	balls[i];
 		balls[i].draw();
 		balls[i].update();
 /*	    document.getElementById("canvas").addEventListener("mouseover", function(event){
@@ -129,6 +135,11 @@
 	}); 
 
 
+	canvas.addEventListener('mouseover', function(event) {
+	  if(event.region) {
+	    console.log("FUNCIONNAAAAAA");
+	  }
+	});
 
 	loop();
 
